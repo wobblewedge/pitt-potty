@@ -1,3 +1,4 @@
+from request.mountainproject import getRocks
 import tweepy
 import os
 from decouple import config
@@ -7,10 +8,9 @@ from PIL import Image
 CONSUMER_KEY=config('CONSUMER_KEY')
 CONSUMER_SECRET=config('CONSUMER_SECRET')
 ACCESS_TOKEN=config('ACCESS_TOKEN')
-
 ACCESS_TOKEN_SECRET=config('ACCESS_TOKEN_SECRET')
-BEARER_TOKEN=config('BEARER_TOKEN')
 ACCOUNT=config('ACCOUNT')
+
 session = requests.session()
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
@@ -25,4 +25,7 @@ try:
 except tweepy.TweepError:
     print('Error! Failed to get request token.')
 
-api.update_status(status="And then...I got in.")
+response = getRocks()
+print(response)
+
+# api.update_status(route)
